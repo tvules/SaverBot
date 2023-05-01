@@ -1,0 +1,18 @@
+version: "3.3"
+
+volumes:
+  db_data:
+
+services:
+  tgbot:
+    container_name: saverbot
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - "./data:/app/data"
+      - "./downloads/:/app/downloads/"
+    environment:
+      - DB_URL=sqlite+aiosqlite:///data/db.sqlite3
+    env_file:
+      - .env
